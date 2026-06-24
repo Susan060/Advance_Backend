@@ -1,0 +1,33 @@
+services:
+  nginx:
+    image: nginx
+    ports:
+      - 8000:80
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf    
+  server1:
+    build: ./server/phase1
+    env_file:
+      - ./server/phase1/.env
+    environment:
+      - SERVER_NAME='First Server'
+    ports:
+      - 5001:7000
+  
+  server2:
+    build: ./server/phase1
+    env_file:
+      - ./server/phase1/.env
+    environment:
+      - SERVER_NAME='Second Server'
+    ports:
+      - 5002:7000
+  
+  server3:
+    build: ./server/phase1
+    env_file:
+      - ./server/phase1/.env
+    environment:
+      - SERVER_NAME='Third Server'
+    ports:
+      - 5003:7000
